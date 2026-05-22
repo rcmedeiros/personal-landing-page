@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Rafael Medeiros — Engineering Lead &amp; Software Engineer</title>
+  <meta name="title" content="Rafael Medeiros — Engineering Lead &amp; Software Engineer">
+  <meta name="description" content="Personal homepage of Rafael Medeiros. Engineering Lead &amp; Software Engineer specializing in software, delivery, and technical direction. Focus areas: Healthcare &amp; banking, Software architecture, and Engineering delivery.">
+  <meta name="keywords" content="Rafael Medeiros, Software Engineer, Engineering Lead, HIC path, Healthcare &amp; banking, Software architecture, Engineering delivery, Technical direction">
+  <meta name="author" content="Rafael Medeiros">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rcmedeiros.me/">
+  <meta property="og:title" content="Rafael Medeiros — Engineering Lead &amp; Software Engineer">
+  <meta property="og:description" content="Engineering Lead &amp; Software Engineer specializing in software, delivery, and technical direction. Focus areas: Healthcare &amp; banking, Software architecture, and Engineering delivery.">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:title" content="Rafael Medeiros — Engineering Lead &amp; Software Engineer">
+  <meta property="twitter:description" content="Engineering Lead &amp; Software Engineer specializing in software, delivery, and technical direction. Focus areas: Healthcare &amp; banking, Software architecture, and Engineering delivery.">
+
+  <!-- Theme & Favicon -->
+  <meta name="theme-color" content="#050507">
+  <!-- Minimal SVG favicon to keep it single file, standalone and beautiful -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050507'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23889eba'/%3E%3C/svg%3E" type="image/svg+xml">
+
+  <style>
+    /* System Font Stack & Design Variables */
+    :root {
+      --color-bg: hsl(240, 16%, 5%);
+      --color-grid: hsla(240, 16%, 15%, 0.15);
+      --color-text-primary: hsl(0, 0%, 94%);
+      --color-text-secondary: hsl(240, 5%, 68%);
+      --color-text-muted: hsl(240, 5%, 52%);
+      --color-accent: hsl(212, 28%, 64%); /* Refined, mature slate blue */
+      
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Accessibility focus styling */
+    :focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    /* Global Reset and Layout */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Ambient noise effect (pure SVG, inline in CSS) */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0.015;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Background Grids & Glows */
+    .bg-effects-container {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+    }
+
+    .ambient-glow-1 {
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, hsla(212, 28%, 64%, 0.035) 0%, transparent 70%);
+      filter: blur(50px);
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      left: 48%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, hsla(270, 80%, 60%, 0.018) 0%, transparent 75%);
+      filter: blur(80px);
+    }
+
+    /* Interactive Cursor Glow */
+    .cursor-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, hsla(212, 28%, 64%, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      will-change: transform;
+    }
+
+    /* Content Layout */
+    main {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 620px;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: -15px; /* Optical centering compensation */
+    }
+
+    /* Hero Copy typography */
+    h1 {
+      font-size: 2.85rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--color-text-primary);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: easeFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+    }
+
+    .subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--color-accent);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: easeFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.24s forwards;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-text-muted);
+      opacity: 0.2;
+      margin: 1.75rem auto;
+      opacity: 0;
+      animation: easeFadeIn 1.5s ease 0.36s forwards;
+    }
+
+    .tagline {
+      font-size: 1.22rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: easeFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
+    }
+
+    .focus-areas {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: easeFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+
+    .focus-separator {
+      color: hsla(240, 16%, 22%, 0.7);
+      margin: 0 0.4rem;
+    }
+
+    /* Links Navigation */
+    nav {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: easeFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.72s forwards;
+    }
+
+    .nav-list {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: hsl(240, 5%, 75%);
+      text-decoration: none;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid hsla(240, 16%, 24%, 0.7);
+      border-radius: 6px;
+      background-color: hsla(240, 16%, 8%, 0.4);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+      color: var(--color-text-primary);
+      border-color: hsla(212, 28%, 64%, 0.35);
+      background-color: hsla(212, 28%, 64%, 0.05);
+      transform: translateY(-1px);
+    }
+
+    /* Animations */
+    @keyframes easeFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .tagline {
+        font-size: 1.08rem;
+      }
+      .focus-areas {
+        font-size: 0.78rem;
+        margin-bottom: 2.5rem;
+      }
+      .nav-list {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 280px;
+      }
+      .nav-item {
+        width: 100%;
+      }
+      .nav-link {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient background elements -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  
+  <div class="bg-effects-container" aria-hidden="true">
+    <div class="grid-pattern"></div>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="cursor-glow"></div>
+  </div>
+
+  <main>
+
+    <!-- Main Header -->
+    <header>
+      <h1>Rafael Medeiros</h1>
+      <p class="subtitle">Software Engineer <span class="focus-separator" aria-hidden="true">·</span> Engineering Lead <span class="focus-separator" aria-hidden="true">·</span> HIC path</p>
+    </header>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- Core Statement -->
+    <p class="tagline">software, delivery, and technical direction</p>
+
+    <!-- Expertise Sub-details -->
+    <p class="focus-areas">
+      Healthcare &amp; banking
+      <span class="focus-separator" aria-hidden="true">·</span>
+      Software architecture
+      <span class="focus-separator" aria-hidden="true">·</span>
+      Engineering delivery
+    </p>
+
+    <!-- Social Links -->
+    <nav aria-label="Social links">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.linkedin.com/in/rafaelmedeiros/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/rcmedeiros/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </li>
+      </ul>
+    </nav>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cursorGlow = document.querySelector('.cursor-glow');
+      if (!cursorGlow) return;
+
+      // Skip dynamic tracking on mobile/touch interfaces or if reduced motion is requested
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (isTouchDevice || prefersReducedMotion) {
+        return;
+      }
+
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let active = false;
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        
+        if (!active) {
+          cursorGlow.style.opacity = '1';
+          // Initialize coordinates immediately to avoid jump-in lag
+          currentX = targetX;
+          currentY = targetY;
+          active = true;
+          requestAnimationFrame(updateGlowPosition);
+        }
+      });
+
+      window.addEventListener('mouseleave', () => {
+        cursorGlow.style.opacity = '0';
+        active = false;
+      });
+
+      function updateGlowPosition() {
+        if (!active) return;
+        
+        // Smooth linear interpolation (lerp)
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        
+        cursorGlow.style.transform = `translate3d(calc(${currentX}px - 50%), calc(${currentY}px - 50%), 0)`;
+        
+        requestAnimationFrame(updateGlowPosition);
+      }
+    });
+  </script>
+</body>
+</html>
